@@ -4,11 +4,10 @@ import { PublicacionComponent } from './publicacion.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: '/publicacion',
     component: PublicacionComponent,
   }
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
