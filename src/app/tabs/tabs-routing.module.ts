@@ -21,14 +21,14 @@ const routes: Routes = [
         loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
       },
       {
-        path: 'publicacion/:publicacionId',//publicacion/:id
+        path: 'p/:id',//p/:id
         loadChildren: () => import('../publicacion/publicacion.module').then(m =>m.PublicacionComponentModule)
       },
       {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
-      }, 
+      } 
 
   {
     path: '',

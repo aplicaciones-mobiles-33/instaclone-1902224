@@ -5,6 +5,7 @@
         </ion-title>
     </ion-toolbar>
 </ion-header>
+
 <ion-content [fullscreen]="true">
     <ion-header collapse="condense">
         <ion-toolbar>
@@ -19,15 +20,16 @@
                     <ion-card-content>
                         <ion-card-header>
                             <ion-grid>
-                                <img src="../../assets/images/avatar.jpg" alt="" height="23px">
-
+                                <img src="../../assets/images/avatar.jpg" alt="" height="23px"> {{publicacion.usuario}} {{publicacion.key}}
                             </ion-grid>
                         </ion-card-header>
                         <ion-card-content>
 
 
-                            <img src="{{publicacion.imagenPost}}" alt="">
-
+                            <a [routerLink]="['/tabs/p']" [queryParams]="{publicacionId: publicacion.key}"> <img src="{{publicacion.urlFoto}}" alt=""></a>
+                            <p>
+                                {{publicacion.caption}}
+                            </p>
                             <div class="opciones">
                                 <ion-col size="12">
                                     <ion-icon name="paper-plane-outline" class="option"></ion-icon>
@@ -40,6 +42,4 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-
-
 </ion-content>

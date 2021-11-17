@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicacionRoutingModule } from '../publicacion/publicacion-routing.module';
 import { HttpClient } from '@angular/common/http';
-import * as data from '../../assets/feed.json';
+//import * as data from '../../assets/feed.json';
 import { dashCaseToCamelCase } from '@angular/compiler/src/util';
 
 export interface Publicaciones{
@@ -18,36 +18,16 @@ export class PublicacionesComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
 
-  publicacionesArreglo: Publicaciones[] = [];
+   publicacionesPorUsuario = [];
 
-  //publicaciones: {id: number, usuario: String, imagenPost: String, avatarUsuario: string,  descripcionPost: String}[] = publicaciones;
-   datos =  data;
+   obtenerPublicaciones(): void {
+     this.http.get('https://insta-clone-app-e762f-default-rtdb.firebaseio.com/publicaciones.json').subscribe(publicacionesRespuesta => {
 
-   datosUsuario: any = this.datos.usuario;
-
-   publicaciones: any = this.datos.publicaciones;
+       console.log(publicacionesRespuesta);
+     })
+   }
 
   ngOnInit() {
-
-
-
+    this.obtenerPublicaciones();
   }
-
-
-  /*
-  publicacionesArreglo: Publicaciones[] = [
-    {
-      imagen: '../assets/images/Post 1.jpg',
-      id: 1
-    },
-    {
-      imagen: '../assets/images/Post 2.png',
-      id: 3
-    },
-    {
-      imagen: '../assets/images/Post 3.png',
-      id: 2
-    }
-  ] */
-
 }
