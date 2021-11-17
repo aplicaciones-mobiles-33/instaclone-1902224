@@ -4,7 +4,7 @@ import { PublicacionComponent } from './publicacion.component';
 
 const routes: Routes = [
   {
-    path: '/publicacion',
+    path: '',
     component: PublicacionComponent,
   }
 ];

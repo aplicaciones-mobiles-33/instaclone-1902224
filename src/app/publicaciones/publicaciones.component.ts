@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicacionRoutingModule } from '../publicacion/publicacion-routing.module';
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
 //import * as data from '../../assets/feed.json';
-import { dashCaseToCamelCase } from '@angular/compiler/src/util';
-
+//import { dashCaseToCamelCase } from '@angular/compiler/src/util';
+import { FirebaseDbService } from '../firebase-db.service';
 export interface Publicaciones{
   imagen: String;
   id: number;
@@ -16,15 +16,17 @@ export interface Publicaciones{
 })
 export class PublicacionesComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private db: FirebaseDbService) { }
 
-   publicacionesPorUsuario = [];
+   publicaciones = [];
 
    obtenerPublicaciones(): void {
-     this.http.get('https://insta-clone-app-e762f-default-rtdb.firebaseio.com/publicaciones.json').subscribe(publicacionesRespuesta => {
-
-       console.log(publicacionesRespuesta);
-     })
+    this.db.getPublicaciones().subscribe(
+      res => {
+        console.log(res);
+        this.publicaciones = res;
+      }
+    )
    }
 
   ngOnInit() {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
+import { FirebaseDbService } from '../firebase-db.service';
 
 @Component({
   selector: 'app-tab3',
@@ -8,38 +9,38 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Tab3Page implements OnInit {
 
-  constructor(private http: HttpClient) {
+  constructor(private db: FirebaseDbService) {
 
 
   }
-
+  editando: boolean = false;
   bio: String;
   nombre: String;
   seguidores: number;
   siguiendo: number;
 
   obtenerPerfil() : void {
-    this.http.get('https://insta-clone-app-e762f-default-rtdb.firebaseio.com/usuario.json')
-    .subscribe(respuesta => {
-      console.log(respuesta);
-
-      let res = Object.assign(respuesta);
-
-      this.bio = res.bio;
-      this.nombre = respuesta['nombre'];
-      this.seguidores = respuesta['seguidores'];
-      this.siguiendo = respuesta['siguiendo'];
+    this.db.getPerfilUsuario().subscribe(res => {
+      console.log(res);
+      let perfilUsuario = Object.assign(res);
+      this.bio = perfilUsuario.bio;
+      this.nombre = perfilUsuario.nombre;
+      this.seguidores = perfilUsuario.seguidores;
+      this.siguiendo = perfilUsuario.siguiendo;
     })
   }
 
 
   obtenerPublicaciones() :void {
-   this.http.get('https://insta-clone-app-e762f-default-rtdb.firebaseio.com/publicaciones.json')
-   .subscribe(responseData => {
-     console.log(responseData);
+    this.db.getPublicaciones().subscribe(res => {
+      console.log(res);
    })
   }
 
+  toggleEditar(): void {
+    this.editando = !this.editando;
+  }
+  
   ngOnInit() {
     this.obtenerPerfil();
 

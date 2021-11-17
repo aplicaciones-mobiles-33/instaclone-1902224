@@ -1,9 +1,11 @@
-<ion-grid>
-    <ion-row>
-        <ion-col *ngFor="let publicacion of publicaciones" size="4">
-            <a [routerLink]="['/tabs/publicacion', publicacion.id]">
-                <img src="{{publicacion.imagenPost}}" alt="{{publicacion.id}}">
-            </a>
-        </ion-col>
-    </ion-row>
+<h3>grid de usuario</h3>
 </ion-grid>
+<ion-row>
+    <ion-col *ngFor="let publicacion of publicaciones" size="4" style="border: solid 1px gray;">
+        <a [routerLink]="['tabs/p', publicacion.key]">
+            <img src="{{publicacion.imagenPost}}" alt="{{publicacion.id}}">
+        </a>
+    </ion-col>
+</ion-row>
+</ion-grid>
+<!--[queryParams]="{p: publicacion.key}"-->

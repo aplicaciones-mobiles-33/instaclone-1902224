@@ -8,18 +8,23 @@ import { AppComponent } from './app.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { PublicacionComponent } from './publicacion/publicacion.component';
 import { HttpClientModule } from '@angular/common/http';
+
 //Firebase App
 import { environment } from 'src/environments/environment';
 import { AngularFireModule} from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import {AngularFireDatabaseModule} from '@angular/fire/compat/database';
 
 @NgModule({
-  declarations: [PerfilComponent, AppComponent],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [HttpClientModule,
      BrowserModule,
       IonicModule.forRoot(),
        AppRoutingModule,
-       AngularFireModule.initializeApp(environment.firebaseConfig)],
+       AngularFireModule.initializeApp(environment.firebaseConfig),
+       AngularFireStorageModule,
+       AngularFireDatabaseModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent]
 }) 
