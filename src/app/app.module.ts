@@ -15,6 +15,9 @@ import { AngularFireModule} from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/compat/database';
 
+//Camara/Archivos/etc
+import { IonicStorageModule } from '@ionic/storage-angular';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -24,7 +27,11 @@ import {AngularFireDatabaseModule} from '@angular/fire/compat/database';
        AppRoutingModule,
        AngularFireModule.initializeApp(environment.firebaseConfig),
        AngularFireStorageModule,
-       AngularFireDatabaseModule],
+       AngularFireDatabaseModule,
+       IonicStorageModule.forRoot()
+      ],
+
+      
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent]
 }) 
